@@ -54,10 +54,11 @@ def edd2canny(src):
 def feature(src):
     # カラーで読み込み
     img = cv2.imread(src,1)
-    # ORB
-    detector = cv2.ORB_create()
+    # ORB(detectorを変えるだけでアルゴリズムを変更できる)
+    detector = cv2.AKAZE_create()
     # 特徴検出
     keypoints = detector.detect(img)
+    print(len(keypoints))
     # 画像への特徴点の書き込み
     img_orb = cv2.drawKeypoints(img, keypoints, None)
     feature_img =cv2.imwrite("./tmp1/orb.jpg", img_orb)
